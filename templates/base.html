@@ -12,6 +12,18 @@
     </header>
     <main>
         {% block content %}{% endblock %}
+        <div class="container">
+            <h2>期限が近づいたタスク</h2>
+            {% if upcoming_tasks|length < 1 %}
+            <p>期限が近づいたタスクはありません。</p>
+            {% else %}
+            <ul>
+                {% for task in upcoming_tasks %}
+                <li>{{ task.content }} - 期限: {{ task.due_date.strftime('%Y/%m/%d') }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
     </main>
     <footer>
         <p>&copy; 2025 ToDo アプリ</p>
